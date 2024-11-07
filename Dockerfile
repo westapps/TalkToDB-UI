@@ -8,13 +8,13 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 
 # Install dependencies
-RUN yarn install
+RUN yarn install lodash
 
 # Copy the rest of the application files
 COPY . .
 
 # Build the React app
-RUN yarn build lodash
+RUN yarn build 
 
 # Step 2: Serve the built app with Nginx (HTTP only)
 FROM nginx:alpine
