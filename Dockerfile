@@ -14,7 +14,7 @@ RUN yarn install
 COPY . .
 
 # Build the React app
-RUN yarn build
+RUN yarn build lodash
 
 # Step 2: Serve the built app with Nginx (HTTP only)
 FROM nginx:alpine
