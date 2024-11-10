@@ -7,7 +7,7 @@ pipeline {
         AWS_ECR_REGISTRY = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
         IMAGE_REPO_NAME = "react/${TALKTODB_REACT_APP_NAME}"
         IMAGE_TAG = "latest"
-        EC2_USER_AT_TALKTODB_UI_INSTANCE = 'ec2-user@ip-172-31-46-53.ap-southeast-2.compute.internal'
+        EC2_USER_AT_TALKTODB_UI_INSTANCE = 'ec2-user@ip-172-31-17-96.ap-southeast-2.compute.internal'
         TALKTODB_UI_SSH_CREDENTIALS = 'talktodb-ui-ec2-ssh-key-id'
     }
 
