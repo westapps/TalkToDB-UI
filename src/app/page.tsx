@@ -1,8 +1,18 @@
 import Image from "next/image";
+import { useState } from "react";
+import { useAuthStore } from "../store/auth";
 
 export default function Home() {
+  const { login, authError } = useAuthStore();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    await login(username, password);
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-lightBlue-50">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
@@ -12,16 +22,43 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <div className="w-full max-w-md bg-softAmber-100 p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold mb-4 text-center">Login</h2>
+          {authError && <p className="text-red-500">{authError}</p>}
+          <input
+            type="text"
+            placeholder="Username"
+            className="w-full p-2 mb-4 border rounded"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full p-2 mb-4 border rounded"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            onClick={handleLogin}
+            className="w-full bg-lightBlue-500 text-white p-2 rounded hover:bg-lightBlue-600"
+          >
+            Login
+          </button>
+          <div className="mt-4 text-center">
+            <button
+              onClick={() => /* Implement Gmail OAuth login */}
+              className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
+            >
+              Login with Gmail
+            </button>
+          </div>
+          <div className="mt-4 text-center">
+            <a href="/register" className="text-blue-500 hover:underline">
+              Create a new user
+            </a>
+          </div>
+        </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a

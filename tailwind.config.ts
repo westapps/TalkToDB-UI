@@ -9,8 +9,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        lightBlue: {
+          50: "#e0f2fe",
+          500: "#3b82f6",
+          600: "#2563eb",
+        },
+        softAmber: {
+          100: "#fffbeb",
+          50: "#fff8e1",
+        },
+      },
+      fontFamily: {
+        geistSans: ["'Geist Sans'", "sans-serif"],
+        geistMono: ["'Geist Mono'", "monospace"],
       },
     },
   },

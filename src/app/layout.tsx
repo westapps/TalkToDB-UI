@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useAuthStore } from "../store/auth";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,10 +25,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isAuthenticated } = useAuthStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isAuthenticated && router.pathname === "/dashboard") {
+      router.push("/");
+    }
+  }, [isAuthenticated, router]);
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-softAmber-50`}
       >
         {children}
       </body>
