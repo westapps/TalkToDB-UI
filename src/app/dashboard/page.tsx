@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useAuthStore } from "../../store/auth";
 
@@ -11,6 +13,10 @@ export default function Dashboard() {
       router.push("/");
     }
   }, [isAuthenticated, router]);
+
+  if (!isAuthenticated) {
+    return null; // Optionally, display a loading indicator
+  }
 
   return (
     <div className="min-h-screen bg-lightBlue-50 p-8">
